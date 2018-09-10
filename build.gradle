@@ -33,7 +33,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('mysql:mysql-connector-java:8.0.12')
     runtime('org.springframework.boot:spring-boot-devtools')
-    runtime('com.h2database:h2')
+    compile('com.google.guava:guava:26.0-jre')
     compileOnly('org.projectlombok:lombok')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     jooqRuntime('mysql:mysql-connector-java:8.0.12')
@@ -53,6 +53,9 @@ jooq {
         generator {
             database {
                 inputSchema = 'jooq_pilot'
+            }
+            generate {
+                javaTimeTypes = true
             }
             target {
                 packageName = 'project.pilot.api.jooq'

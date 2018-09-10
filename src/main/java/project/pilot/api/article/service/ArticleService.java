@@ -25,7 +25,7 @@ public class ArticleService {
         articleDAO.insert(request);
     }
 
-    public List<ArticleDTO> getList() {
-        return articleDAO.getList();
+    public List<ArticleDTO> getArticles() {
+        return articleDAO.getArticles();
     }
 }

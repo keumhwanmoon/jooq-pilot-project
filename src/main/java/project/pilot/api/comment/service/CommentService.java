@@ -2,11 +2,9 @@ package project.pilot.api.comment.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import project.pilot.api.comment.dao.CommentDAO;
 import project.pilot.api.comment.dto.CommentDTO;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**

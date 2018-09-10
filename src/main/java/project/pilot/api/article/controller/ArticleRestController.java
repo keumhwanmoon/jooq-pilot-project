@@ -31,6 +31,6 @@ public class ArticleRestController {
 
     @GetMapping("/article")
     public List<ArticleDTO> getArticles() {
-        return articleService.getList();
+        return articleService.getArticles();
     }
 }

@@ -3,8 +3,10 @@ package project.pilot.api.article.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import project.pilot.api.comment.dto.CommentDTO;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author jason, Moon
@@ -20,4 +22,6 @@ public class ArticleDTO {
     private String postContent;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
+
+    private List<CommentDTO> comments;
 }

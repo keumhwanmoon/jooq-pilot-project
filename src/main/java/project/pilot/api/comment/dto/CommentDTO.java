@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentDTO {
+
     private Integer seq;
     @NotNull
     private Integer articleSeq;
