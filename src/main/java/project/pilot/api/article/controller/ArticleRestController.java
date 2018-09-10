@@ -1,10 +1,7 @@
 package project.pilot.api.article.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.pilot.api.article.dto.ArticleDTO;
 import project.pilot.api.article.service.ArticleService;
 
@@ -32,5 +29,10 @@ public class ArticleRestController {
     @GetMapping("/article")
     public List<ArticleDTO> getArticles() {
         return articleService.getArticles();
+    }
+
+    @PutMapping("/article")
+    public void updateArticle(@RequestBody ArticleDTO request) {
+        articleService.update(request);
     }
 }

@@ -17,3 +17,14 @@ GET {{host}}/article
 Accept: application/json
 
 ###
+
+PUT {{host}}/article
+Content-Type: application/json
+
+{
+  "seq": 1,
+  "postTitle": "수정된 테스트 제목5",
+  "postContent": "수정된 테스트 내용5"
+}
+
+###

@@ -45,7 +45,7 @@ jooq {
     edition = 'OSS'    // the default (can be omitted), other allowed values are PRO, PRO_JAVA_6, and TRIAL
     sample(sourceSets.main) {
         jdbc {
-            driver = 'com.mysql.jdbc.Driver'
+            driver = 'com.mysql.cj.jdbc.Driver'
             url = 'jdbc:mysql://192.168.99.100:3306/jooq_pilot'
             user = 'local_user'
             password = 'password'
@@ -63,5 +63,4 @@ jooq {
             }
         }
     }
-
 }

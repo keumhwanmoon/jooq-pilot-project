@@ -67,4 +67,14 @@ public class ArticleDAO {
                 .values(request.getPostTitle(), request.getPostContent())
                 .execute();
     }
+
+    public void updateArticle(ArticleDTO request) {
+        dslContext
+                .update(ARTICLE)
+                .set(ARTICLE.POST_TITLE, request.getPostTitle())
+                .set(ARTICLE.POST_CONTENT, request.getPostContent())
+                .where(ARTICLE.SEQ.eq(request.getSeq()))
+                .execute();
+
+    }
 }

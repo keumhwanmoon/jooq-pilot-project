@@ -28,4 +28,8 @@ public class ArticleService {
     public List<ArticleDTO> getArticles() {
         return articleDAO.getArticles();
     }
+
+    public void update(ArticleDTO request) {
+        articleDAO.updateArticle(request);
+    }
 }
