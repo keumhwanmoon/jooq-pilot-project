@@ -3,4 +3,4 @@
 > jooq codegen  
 > ```gradle generateSampleJooqSchemaSource```  
 
-> [using docker & mysql](./DOCKER_MYSQL.md)
+> [using docker & mysql](md/DOCKER_MYSQL.md)
