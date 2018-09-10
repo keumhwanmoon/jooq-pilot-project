@@ -13,8 +13,9 @@ Content-Type: application/json
   "commentContent": "댓글 내용"
 }
 
-###
+### 댓글 조회
 GET {{host}}/comment
+                   ?articleSeq=1
 Accept: application/json
 
 ###

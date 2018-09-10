@@ -7,6 +7,7 @@ import project.pilot.api.comment.dao.CommentDAO;
 import project.pilot.api.comment.dto.CommentDTO;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author jason, Moon (jason.moon.kr@gmail.com)
@@ -23,5 +24,9 @@ public class CommentService {
 
     public void postComment(CommentDTO request) {
         commentDAO.postComment(request);
+    }
+
+    public List<CommentDTO> getComments(Integer articleSeq) {
+        return commentDAO.getComments(articleSeq);
     }
 }

@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import project.pilot.api.comment.dto.CommentDTO;
 
+import java.util.List;
+
 import static project.pilot.api.jooq.tables.Comment.COMMENT;
 
 /**
@@ -26,5 +28,13 @@ public class CommentDAO {
                 .columns(COMMENT.ARTICLE_SEQ, COMMENT.COMMENT_CONTENT)
                 .values(request.getArticleSeq(), request.getCommentContent())
                 .execute();
+    }
+
+    public List<CommentDTO> getComments(Integer articleSeq) {
+        return dslContext
+                .select()
+                .from(COMMENT)
+                .where(COMMENT.ARTICLE_SEQ.eq(articleSeq))
+                .fetchInto(CommentDTO.class);
     }
 }

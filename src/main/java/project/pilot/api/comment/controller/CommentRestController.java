@@ -1,13 +1,12 @@
 package project.pilot.api.comment.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.pilot.api.comment.dto.CommentDTO;
 import project.pilot.api.comment.service.CommentService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author jason, Moon (jason.moon.kr@gmail.com)
@@ -25,5 +24,10 @@ public class CommentRestController {
     @PostMapping("/comment")
     public void postComment(@Valid @RequestBody CommentDTO request) {
         commentService.postComment(request);
+    }
+
+    @GetMapping("/comment")
+    public List<CommentDTO> getComments(@RequestParam Integer articleSeq) {
+        return commentService.getComments(articleSeq);
     }
 }
