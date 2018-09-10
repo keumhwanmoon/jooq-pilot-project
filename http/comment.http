@@ -8,7 +8,6 @@ POST {{host}}/comment
 Content-Type: application/json
 
 {
-  "seq": 5,
   "articleSeq": 1,
   "commentContent": "댓글 내용"
 }

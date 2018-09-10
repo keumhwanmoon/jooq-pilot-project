@@ -8,8 +8,8 @@ POST {{host}}/article
 Content-Type: application/json
 
 {
-  "postTitle": "테스트 제목5",
-  "postContent": "테스트 내용5"
+  "postTitle": "테스트 제목6",
+  "postContent": "테스트 내용6"
 }
 
 ###
