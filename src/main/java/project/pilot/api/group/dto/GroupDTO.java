@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class GroupDTO {
     private Integer seq;
+    private Integer parSeq;
     private String grpName;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;

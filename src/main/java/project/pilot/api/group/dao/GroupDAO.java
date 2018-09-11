@@ -26,22 +26,21 @@ public class GroupDAO {
     }
 
     public List<GroupDTO> getList() {
-        Grp a = GRP.as("a");
-        Grp b = GRP.as("b");
+        Grp T = GRP.as("T");
 
         return dslContext
                 .withRecursive("ROOT", "SEQ", "PAR_SEQ", "GRP_NAME")
                 .as(
-                        select(a.SEQ.as("SEQ"), a.PAR_SEQ.as("PAR_SEQ"), a.GRP_NAME.as("GRP_NAME"))
-                                .from(a)
-                                .where(a.PAR_SEQ.isNull())
+                        select(T.SEQ.as("SEQ"), T.PAR_SEQ.as("PAR_SEQ"), T.GRP_NAME.as("GRP_NAME"))
+                                .from(T)
+                                .where(T.PAR_SEQ.isNull())
                 ).with("CTE", "SEQ", "PAR_SEQ", "GRP_NAME")
                 .as(
-                        select(b.SEQ.as("SEQ"), b.PAR_SEQ.as("PAR_SEQ"), concat(field(name("ROOT", "GRP_NAME")), DSL.val("/"), b.GRP_NAME).as("GRP_NAME"))
-                                .from(b)
+                        select(T.SEQ.as("SEQ"), T.PAR_SEQ.as("PAR_SEQ"), concat(field(name("ROOT", "GRP_NAME")), DSL.val("/"), T.GRP_NAME).as("GRP_NAME"))
+                                .from(T)
                                 .innerJoin(table(name("ROOT")))
-                                .on(b.PAR_SEQ.eq(field(name("ROOT", "SEQ"), Integer.class)))
-                                .where(b.PAR_SEQ.isNotNull())
+                                .on(T.PAR_SEQ.eq(field(name("ROOT", "SEQ"), Integer.class)))
+                                .where(T.PAR_SEQ.isNotNull())
                 )
                 .select(field(name("CTE", "SEQ")),
                         field(name("CTE", "PAR_SEQ")),
