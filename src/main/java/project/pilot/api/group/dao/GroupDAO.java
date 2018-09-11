@@ -1,6 +1,9 @@
 package project.pilot.api.group.dao;
 
+import com.google.common.collect.Lists;
 import org.jooq.DSLContext;
+import org.jooq.Record;
+import org.jooq.Result;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -8,6 +11,8 @@ import project.pilot.api.group.dto.GroupDTO;
 import project.pilot.api.jooq.tables.Grp;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import static org.jooq.impl.DSL.*;
 import static project.pilot.api.jooq.tables.Grp.GRP;
@@ -25,7 +30,7 @@ public class GroupDAO {
         this.dslContext = dslContext;
     }
 
-    public List<GroupDTO> getList() {
+    public List<GroupDTO> getRecursiveList() {
         Grp T = GRP.as("T");
 
         return dslContext
@@ -48,5 +53,40 @@ public class GroupDAO {
                 .from(table(name("CTE")))
                 .fetch()
                 .into(GroupDTO.class);
+    }
+
+    public List<GroupDTO> getHierarchicalList() {
+        Grp T1 = GRP.as("T1");
+        Grp T2 = GRP.as("T2");
+
+        Map<Record, Result<Record>> recordResultMap = dslContext
+                .select()
+                .from(T1)
+                .join(T2)
+                .on(T1.SEQ.eq(T2.PAR_SEQ))
+                .where(T1.PAR_SEQ.isNull())
+                .fetch()
+                .intoGroups(T1.fields());
+
+        List<GroupDTO> resultList = Lists.newArrayList();
+
+        recordResultMap.forEach((record, result) -> {
+            GroupDTO group = record.into(GroupDTO.class);
+
+            List<GroupDTO> children = Lists.newArrayList();
+
+            result.forEach(r -> {
+                if (Objects.nonNull(r.getValue(5))) {
+                    children.add(r.into(GroupDTO.class));
+                }
+            });
+
+            group.setChildren(children);
+
+            resultList.add(group);
+        });
+
+        return resultList;
+
     }
 }

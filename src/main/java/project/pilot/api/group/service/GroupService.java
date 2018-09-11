@@ -20,7 +20,11 @@ public class GroupService {
         this.groupDAO = groupDAO;
     }
 
-    public List<GroupDTO> getList() {
-        return groupDAO.getList();
+    public List<GroupDTO> getRecursiveList() {
+        return groupDAO.getRecursiveList();
+    }
+
+    public List<GroupDTO> getHierarchicalList() {
+        return groupDAO.getHierarchicalList();
     }
 }

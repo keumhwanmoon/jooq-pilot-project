@@ -2,6 +2,7 @@ package project.pilot.api.group.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import project.pilot.api.group.dto.GroupDTO;
 import project.pilot.api.group.service.GroupService;
@@ -22,7 +23,11 @@ public class GroupRestController {
     }
 
     @GetMapping("/group")
-    public List<GroupDTO> getList() {
-        return groupService.getList();
+    public List<GroupDTO> getList(@RequestParam String type) {
+        if ("R".equals(type)) { // Recursive
+            return groupService.getRecursiveList();
+        } else { // Hierarchical
+            return groupService.getHierarchicalList();
+        }
     }
 }

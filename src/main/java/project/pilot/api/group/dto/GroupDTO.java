@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author jason, Moon (jason.moon.kr@gmail.com)
@@ -19,4 +20,6 @@ public class GroupDTO {
     private String grpName;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
+
+    private List<GroupDTO> children;
 }
