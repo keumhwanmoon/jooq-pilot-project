@@ -23,7 +23,7 @@ public class GroupRestController {
     }
 
     @GetMapping("/group")
-    public List<GroupDTO> getList(@RequestParam String type) {
+    public List<GroupDTO> getList(@RequestParam(required = false) String type) {
         if ("R".equals(type)) { // Recursive
             return groupService.getRecursiveList();
         } else { // Hierarchical
